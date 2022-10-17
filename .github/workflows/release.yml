@@ -1,0 +1,30 @@
+name: Publish to registry
+on:
+  push:
+    branches:
+      - "master"
+jobs:
+  check-all:
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build library
+        run: npm run build
+
+      - name: Publish to npm registry
+        run: npm publish
+        env:
+          # https://docs.npmjs.com/using-private-packages-in-a-ci-cd-workflow#set-the-token-as-an-environment-variable-on-the-cicd-server
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
