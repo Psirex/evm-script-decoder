@@ -1,5 +1,5 @@
 {
-  "name": "evm-script-decoder",
+  "name": "@lidofinance/evm-script-decoder",
   "version": "0.2.2",
   "description": "",
   "main": "lib/index.js",
@@ -9,6 +9,7 @@
   },
   "author": "Bogdan Kovtun <psirex48@gmail.com>",
   "license": "ISC",
+  "files": ["lib"],
   "dependencies": {
     "@ethersproject/abi": "^5.0.7",
     "keccak256": "^1.0.3"
